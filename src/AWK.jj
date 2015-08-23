@@ -1,0 +1,303 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
+ */
+options
+{
+  JDK_VERSION = "1.5";
+  static = true;
+  DEBUG_PARSER = true;
+}
+
+PARSER_BEGIN(SENTENCE)
+
+public class SENTENCE {
+  public static void main(String args []) throws ParseException  {
+    SENTENCE sentence = new SENTENCE(System.in);
+    while (true) {
+      System.out.println("Lendo do teclado...");
+      try {
+		sentence.Parse();
+      }
+      catch (Exception e) {
+        System.out.println("Erro sintático.");
+        System.out.println(e.getMessage());
+        break;
+      }
+      catch (Error e) {
+        System.out.println("Erro léxico.");
+        System.out.println(e.getMessage());
+        break;
+      }
+    }
+  }
+}
+
+PARSER_END(SENTENCE)
+
+SKIP :
+{ 
+  " " 
+  | "\t"
+  | "\n"
+  | <COMENTARIO: "#" (~["\n","\r"])* ("\n" | "\r" | "\r\n")> 
+}
+
+// Linguagem AWK
+TOKEN:
+{
+  <CONTINUE: "continue"> |
+  < EXIT: "exit" > |
+  <RETURN: "return"> |
+  <WHILE: "while"> |
+  <BREAK: "break"> |
+  <ELSE: "else"> |
+  < NEXT: "next" > |
+  < DELETE: "delete" > |
+  <FOR: "for"> |
+  <IF: "if"> |
+  <DO: "do"> |
+  < IN: "in" > |
+  < PRINT: "print" > |
+  < GETLINE: "getline" > |
+  < PADRAO_ID: "BEGIN" | "END" > |
+
+  < CIFRAO: "$" > |
+
+  < OP_RELACIONAL: "<" | "<=" | ">" | ">=" | "==" | "!=" | "~" | "!~" > |
+  < OP_ATRIBUICAO: "=" | "*=" | "/=" | "%=" | "+=" | "-=" | "^=" | "**=" > |
+  < ABRE_PARENTESES: "(" > |
+  < FECHA_PARENTESES: ")" > |
+
+  < FUNCAO_MAT: "atan2" | "cos" | "sin" | "exp" | "log" | "sqrt" | "int" | "rand" | "srand" > |
+  < FUNCAO_IO: "length" | "index" | "split" | "tolower" | "toupper" | "asort" | "asorti"
+  | "gsub" | "sub" | "match" | "strtonum" | "sprintf" | "substr" > |
+
+  < FIM: ";" > |
+  < DIGITO: ["0"-"9"] > |
+  < LETRA: ["a"-"z"] | ["A"-"Z"] > |
+  < STRING: "\"" (~["\"","\n","\r"] | < NUMERO >) "\"" > |
+  < NUMERO: (< DIGITO >)+ ("." (< DIGITO >)*)? > |
+  < LISTA_VAR: < VAR >("," < VAR >)* > |
+  < VAR: (<LETRA > | "_" | <CIFRAO> )(< VAR_BODY >)? > |
+  < VAR_ARRAY: < VAR > ("[" < VAR >("," < VAR >)* "]")? > |
+  < VAR_BODY: (< LETRA > | "_")(< LETRA >|< DIGITO >|"_")* >
+}
+
+void Parse() throws ParseException, TokenMgrError:	{ Token t; }
+{
+  t=< CONTINUE > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< EXIT > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< RETURN > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< WHILE > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< BREAK > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< ELSE > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< NEXT > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< DELETE > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< FOR > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< IF > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< DO > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< IN > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< PRINT > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< GETLINE > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< PADRAO_ID > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< CIFRAO > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< OP_RELACIONAL > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< OP_ATRIBUICAO > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< FUNCAO_MAT > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< FUNCAO_IO > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< FIM > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< DIGITO > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< LETRA > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< STRING > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< NUMERO > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< LISTA_VAR > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< VAR > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< VAR_ARRAY > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< VAR_BODY > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< ABRE_PARENTESES > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  t=< FECHA_PARENTESES > { System.out.println("@("+ t.beginLine+","+t.beginColumn+")\t"+t.toString()); } |
+  < EOF > {System.exit(0);}
+  Programa()
+}
+
+void Programa():	{}
+{
+  Comandos()
+}
+
+void Comandos():	{}
+{
+  ( < PADRAO_ID > )? "{" Acao() "}" | ( Padrao() "{" Acao() "}" )*
+}
+
+void Padrao():	{}
+{
+  LOOKAHEAD(100) Exp_relacional() ( ( "&&" | "||" | "," ) Exp_relacional() )* |
+  LOOKAHEAD(100) <ABRE_PARENTESES> ( "!" )* Exp_relacional() <FECHA_PARENTESES> |
+  Expressao() "?" Expressao() ":" Exp_atribuicao()
+}
+
+void Acao():	{}
+{
+  Declaracao()
+}
+
+void Declaracao():	{}
+{
+  LOOKAHEAD(100) D_Expressao() |
+  LOOKAHEAD(100) D_funcao() |
+  LOOKAHEAD(100) D_lista() |
+  LOOKAHEAD(100) D_if() |
+  D_loop() |
+  D_control() |
+  "{" D_lista() "}"
+}
+
+void D_Expressao():	{}
+{
+  Expressao() (< FIM >)?
+}
+
+void D_funcao():	{}
+{
+  ( <EXIT> <ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> | <DELETE> < VAR_ARRAY > | D_funcao_matematica() | D_funcao_io() 
+  | D_funcao_string() | <NEXT> ) < FIM >
+}
+
+void D_if():	{}
+{
+  <IF> <ABRE_PARENTESES> Expressao() ("in" <VAR_ARRAY>)? <FECHA_PARENTESES> Declaracao() (LOOKAHEAD(100) <ELSE> Declaracao() )?
+}
+
+void D_loop():	{}
+{
+  <WHILE> <ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> Declaracao() |
+  <DO> Declaracao() <WHILE> <ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> |
+  <FOR> <ABRE_PARENTESES> ( (Expressao())? <FIM> (Expressao())? <FIM> ( LOOKAHEAD(100) Expressao())? ) | (<VAR> "in" <VAR_ARRAY> ) <FECHA_PARENTESES> Declaracao()
+}
+
+void D_control():	{}
+{
+  <CONTINUE> | <BREAK> | <RETURN> (LOOKAHEAD(100) Expressao())? (< FIM >)?
+}
+
+void D_lista():	{}
+{
+  (LOOKAHEAD(100) (LOOKAHEAD(100) D_Expressao() |
+  D_funcao() |
+  D_if() |
+  LOOKAHEAD(100) D_loop() |
+  D_control()) )+
+}
+
+void Expressao():	{}
+{
+  Exp_and() (LOOKAHEAD(100) "||" Exp_and())*
+}
+
+void D_expressao():	{}
+{
+  Expressao() (LOOKAHEAD(100) < FIM >)?
+}
+
+void D_funcao_matematica():	{}
+{
+  < FUNCAO_MAT > <ABRE_PARENTESES> (Expressao() ("," Expressao())* )? <FECHA_PARENTESES>
+//	"atan2" <ABRE_PARENTESES> Expressao() "," Expressao() <FECHA_PARENTESES> 
+//    | "cos"<ABRE_PARENTESES> Expressao() <FECHA_PARENTESES>
+//    | "sin"<ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> 
+//    | "exp"<ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> 
+//    | "log"<ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> 
+//    | "sqrt"<ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> 
+//    | "int"<ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> 
+//    | "rand"<ABRE_PARENTESES> <FECHA_PARENTESES>
+//	| "srand"<ABRE_PARENTESES> (Expressao())? <FECHA_PARENTESES>
+}
+
+void D_funcao_io():	{}
+{
+	< GETLINE > ( <VAR > | <ABRE_PARENTESES> (<VAR >)? <FECHA_PARENTESES> )? 
+	| < PRINT > (LOOKAHEAD(100) Print_lista() | <ABRE_PARENTESES> (Print_lista())? <FECHA_PARENTESES> )?
+}
+
+void D_funcao_string():	{}
+{
+  < FUNCAO_IO > <ABRE_PARENTESES> (
+    (LOOKAHEAD(100) Var_string() | LOOKAHEAD(100) Print_lista() | "/"Var_string()"/")
+    (LOOKAHEAD(100) ","Var_string() | LOOKAHEAD(100) "," Print_lista() | "," "/"Var_string()"/")*)? <FECHA_PARENTESES> (LOOKAHEAD(100) < FIM >)?
+//	"length" <ABRE_PARENTESES> <FECHA_PARENTESES>
+//	| "length" <ABRE_PARENTESES>Var_string()<FECHA_PARENTESES>
+//	| "index" <ABRE_PARENTESES>Var_string()","Var_string()<FECHA_PARENTESES>
+//	| "split" <ABRE_PARENTESES>Var_string()","<VAR_ARRAY > ( ","Var_string() )? <FECHA_PARENTESES>
+//	| "tolower" <ABRE_PARENTESES>Var_string()<FECHA_PARENTESES>
+//	| "toupper" <ABRE_PARENTESES>Var_string()<FECHA_PARENTESES>
+//	| "asort" <ABRE_PARENTESES>Var_string() (","<VAR_ARRAY >)? <FECHA_PARENTESES>
+//	| "asorti" <ABRE_PARENTESES>Var_string() (","<VAR_ARRAY >)? <FECHA_PARENTESES>
+//	| "gsub" <ABRE_PARENTESES> "/" <VAR_BODY>"/"","Var_string() (","Var_string())? <FECHA_PARENTESES>
+//	| "sub"<ABRE_PARENTESES>"/"<VAR_BODY>"/"","Var_string() (","Var_string())? <FECHA_PARENTESES>
+//	| "match"<ABRE_PARENTESES>Var_string()"," "/"<VAR_BODY>"/" ("," <VAR_ARRAY >)? <FECHA_PARENTESES>
+//	| "strtonum"<ABRE_PARENTESES>Var_string()<FECHA_PARENTESES>
+//	| "sprintf"<ABRE_PARENTESES>Print_lista() <FECHA_PARENTESES>
+//	| "substr"<ABRE_PARENTESES>Var_string()"," <VAR_ARRAY > ("," <VAR_ARRAY >)? <FECHA_PARENTESES>
+}
+
+void Print_lista():	{}
+{
+  LOOKAHEAD(100) < VAR >|< VAR_ARRAY >| LOOKAHEAD(100) Var_string() | LOOKAHEAD(100) D_expressao()
+}
+
+void Exp_relacional():	{}
+{
+  Exp_atribuicao() (LOOKAHEAD(100) < OP_RELACIONAL > Exp_atribuicao() )* 
+}
+
+void Exp_and():	{}
+{
+  Exp_not() (LOOKAHEAD(100) "&&" Exp_not() )*
+}
+
+void Exp_not():	{}
+{
+  ( "!" )* Exp_relacional()
+}
+
+void Exp_atribuicao():	{}
+{
+  (LOOKAHEAD(100)  < VAR > <OP_RELACIONAL >)* Exp_soma()
+}
+
+void Exp_soma():	{}
+{
+  Exp_multiplicacao() (LOOKAHEAD(100)  ( "+" | "-" ) Exp_multiplicacao() )*
+}
+
+void Exp_multiplicacao():	{}
+{
+   Exp_potencia() (LOOKAHEAD(100)  ( "*" | "/" | "%" ) Exp_potencia() )*
+}
+
+void Exp_potencia():	{}
+{
+  (LOOKAHEAD(100)  Exp_negacao() ( "^" | "**" ) )* Exp_negacao()
+}
+
+void Exp_negacao():	{}
+{
+   ( "-" )* Exp_inc_dec()
+}
+
+void Exp_inc_dec():	{}
+{
+   LOOKAHEAD(100) Exp_simples() (LOOKAHEAD(100) Exp_simples())* (LOOKAHEAD(100)  ("++" | "--") )? |
+   ( "++" | "--" )? (LOOKAHEAD(100) Exp_simples())* Exp_simples()
+}
+
+void Exp_simples():	{}
+{
+  < VAR > | < NUMERO > | <ABRE_PARENTESES> Expressao() <FECHA_PARENTESES> | <CIFRAO> Expressao() | < STRING >
+}
+
+void Var_string():	{}
+{
+	< VAR > | < STRING >
+}
