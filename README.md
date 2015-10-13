@@ -1,1 +1,1 @@
-AWK parser written in JavaCC
+AWK parser written in JavaCC (beta)
