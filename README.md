@@ -1,4 +1,4 @@
-College project AWK parser written in JavaCC (beta)
+College project AWK parser written in JavaCC
 ===================================================
 
 How to run
